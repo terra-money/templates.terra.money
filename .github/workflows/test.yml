@@ -54,8 +54,8 @@ jobs:
       - name: Lint
         run: yarn run lint
 
-      - name: Build
-        run: yarn run build
+      - name: Build Test
+        run: yarn workspace apps run build
 
       - name: Coverage Test
         run: yarn workspace apps run coverage # coverage: "yarn workspace {workspace} run coverage && yarn workspace {workspace} run coverage && ..."
