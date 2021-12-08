@@ -1,0 +1,89 @@
+{
+  "$schema": "https://terra-money.github.io/templates/templates.schema.json",
+  "templates": [
+    {
+      "id": "smart-contract:basic",
+      "title": "Smart contract basic",
+      "images": [
+        "image.png"
+      ],
+      "github": "https://github.com/iamssen/terra-smart-contract-basic",
+      "categories": [
+        "smart_contract",
+        "web_app"
+      ],
+      "tags": [
+        "react"
+      ]
+    },
+    {
+      "id": "wallet-provider:create-react-app",
+      "title": "Wallet-Provider Create-React-App template",
+      "images": [
+        "image.png"
+      ],
+      "github": "https://github.com/terra-money/wallet-provider/tree/main/templates/create-react-app",
+      "categories": [
+        "web_app"
+      ],
+      "tags": [
+        "react"
+      ]
+    },
+    {
+      "id": "wallet-provider:next",
+      "title": "Wallet-Provider Next.js template",
+      "images": [
+        "image.png"
+      ],
+      "github": "https://github.com/terra-money/wallet-provider/tree/main/templates/next",
+      "categories": [
+        "web_app"
+      ],
+      "tags": [
+        "react",
+        "next.js"
+      ]
+    },
+    {
+      "id": "wallet-provider:vite",
+      "title": "Wallet-Provider Vite.js template",
+      "images": [
+        "image.png"
+      ],
+      "github": "https://github.com/terra-money/wallet-provider/tree/main/templates/vite",
+      "categories": [
+        "web_app"
+      ],
+      "tags": [
+        "react",
+        "vite.js"
+      ]
+    },
+    {
+      "id": "wallet-provider:wallet-controller",
+      "title": "Wallet-Controller template",
+      "images": [
+        "image.png"
+      ],
+      "github": "https://github.com/terra-money/wallet-provider/tree/main/templates/wallet-controller",
+      "categories": [
+        "web_app"
+      ],
+      "tags": [
+        "lit-html"
+      ]
+    }
+  ],
+  "serise": [
+    {
+      "title": "Wallet-Provider templates",
+      "templates": [
+        "wallet-provider:create-react-app",
+        "wallet-provider:next",
+        "wallet-provider:vite",
+        "wallet-provider:wallet-controller"
+      ]
+    }
+  ]
+}

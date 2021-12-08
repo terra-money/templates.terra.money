@@ -1,0 +1,30 @@
+{
+  "private": true,
+  "version": "2021.12.07",
+  "author": "Ian Lee <ian@terra.money>",
+  "license": "MIT",
+  "repository": "https://github.com/githubid/repository",
+  "scripts": {
+    "format": "prettier --write \"**/*.{js,jsx,ts,tsx}\"",
+    "lint": "eslint \"**/*.{js,jsx,ts,tsx}\"",
+    "postinstall": "husky install"
+  },
+  "workspaces": [
+    "apps"
+  ],
+  "lint-staged": {
+    "**/src/{**/*,*}.{ts,tsx}": [
+      "prettier --write",
+      "eslint --max-warnings 0"
+    ]
+  },
+  "devDependencies": {
+    "@handbook/markdown-source-import": "^1.1.0",
+    "@ssen/eslint-config": "^2.0.1",
+    "@ssen/prettier-config": "^2.0.1",
+    "eslint": "^7.29.0",
+    "husky": "^7.0.0",
+    "lint-staged": "^12.0.0",
+    "prettier": "^2.5.0"
+  }
+}

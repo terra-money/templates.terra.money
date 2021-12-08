@@ -1,0 +1,13 @@
+{
+  "$schema": "https://rocket-hangar.github.io/rocket-punch/schemas/packages.json",
+  "terra-templates": {
+    "version": "0.1.0",
+    "tag": "latest",
+    "packageJson": {
+      "bin": {
+        "terra-templates": "./bin/terra-templates.js"
+      },
+      "keywords": ["terra", "block-chain", "scaffold"]
+    }
+  }
+}

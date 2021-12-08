@@ -1,0 +1,6 @@
+dist/
+out/
+storybook-static/
+react-app-env.d.ts
+__downloads__/
+bin.test.ts

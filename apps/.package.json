@@ -1,0 +1,14 @@
+{
+  "author": "Ian Lee <ian@terra.money>",
+  "license": "Apache-2.0",
+  "repository": "github:terra-money/templates.terra.money",
+  "bugs": "https://github.com/terra-money/templates.terra.money/issues",
+  "homepage": "https://github.com/terra-money/templates.terra.money/tree/main/src/{name}",
+  "engines": {
+    "node": ">=12"
+  },
+  "publishConfig": {
+    "cache": "~/.npm",
+    "access": "public"
+  }
+}
