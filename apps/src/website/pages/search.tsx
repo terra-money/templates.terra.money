@@ -4,7 +4,7 @@ import React, { useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { searchTemplateData, TemplatesJson } from 'terra-templates';
-import { GithubStarButton } from 'website/components/GithubStarButton';
+import { TemplateCard } from 'website/components/TemplateCard';
 import { useTemplateData } from '../services/useTemplateData';
 
 export interface SearchProps {
@@ -37,20 +37,15 @@ function Component({ className }: SearchProps) {
         onChange={({ target }) => updateValue(target.value)}
       />
 
-      <h2>Templates</h2>
+      <h2 style={{ marginTop: 20 }}>Templates</h2>
 
-      <ul>
-        {templates.map(({ id, title, github, categories }) => (
-          <li key={id}>
-            <h3>
-              <Link to={`/template/${id}`}>{title}</Link>{' '}
-              <GithubStarButton github={github} />
-            </h3>
-          </li>
+      <ul className="templates">
+        {templates.map((template) => (
+          <TemplateCard template={template} />
         ))}
       </ul>
 
-      <h2>Series</h2>
+      <h2 style={{ marginTop: 20 }}>Series</h2>
 
       <ul>
         {serise.map(({ id, title }) => (
@@ -66,7 +61,23 @@ function Component({ className }: SearchProps) {
 }
 
 const StyledComponent = styled(Component)`
-  // TODO
+  padding: 20px;
+
+  input {
+    width: 100%;
+    font-size: 15px;
+    padding: 10px;
+  }
+
+  .templates {
+    list-style: none;
+    padding: 0;
+
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-column-gap: 10px;
+    grid-row-gap: 10px;
+  }
 `;
 
 export const Search = fixHMR(StyledComponent);
