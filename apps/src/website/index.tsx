@@ -8,8 +8,6 @@ import {
   Routes,
 } from 'react-router-dom';
 import { Header } from './components/Header';
-import { Main } from './components/Main';
-import { Cli } from './pages/cli';
 import { Search } from './pages/search';
 import { Series } from './pages/series';
 import { Template } from './pages/template';
@@ -21,15 +19,14 @@ function App() {
   return (
     <div>
       <Header />
-      <Main>
+      <main>
         <Routes>
           <Route path="/" element={<Search />} />
-          <Route path="/cli" element={<Cli />} />
           <Route path="/template/:templateId" element={<Template />} />
           <Route path="/series/:seriesId" element={<Series />} />
           <Route path="/*" element={<Navigate replace to="/" />} />
         </Routes>
-      </Main>
+      </main>
     </div>
   );
 }

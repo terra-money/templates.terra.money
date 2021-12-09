@@ -4518,6 +4518,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/git-url-parse@npm:^9.0.1":
+  version: 9.0.1
+  resolution: "@types/git-url-parse@npm:9.0.1"
+  checksum: 9d1678a0aff50b6e77a172965070de34d2e89bc6ccc96c94ea3b2ecf250c602c0daff4b9f4e0eb830e53e81ee273b08f15f728d42ec087f1a95e4f51d57b594a
+  languageName: node
+  linkType: hard
+
 "@types/glob@npm:*, @types/glob@npm:^7.1.1":
   version: 7.2.0
   resolution: "@types/glob@npm:7.2.0"
@@ -5786,6 +5793,7 @@ __metadata:
     "@storybook/preset-create-react-app": ^3.2.0
     "@storybook/react": ^6.4.8
     "@testing-library/jest-dom": ^5.16.1
+    "@types/git-url-parse": ^9.0.1
     "@types/isomorphic-fetch": ^0.0.35
     "@types/jest": ^26.0.24
     "@types/node": ^16.11.12
@@ -5800,6 +5808,8 @@ __metadata:
     copy-github-directory: ^1.4.1
     cross-env: ^7.0.3
     fix-hmr: ^1.0.2
+    git-url-parse: ^11.6.0
+    github-markdown-css: ^5.1.0
     isomorphic-fetch: ^3.0.0
     lint-staged: ^12.1.2
     multiplerun: ^2.0.1
@@ -5808,6 +5818,7 @@ __metadata:
     puppeteer: ^12.0.1
     react: ^17.0.2
     react-dom: ^17.0.2
+    react-github-btn: ^1.2.1
     react-markdown: ^7.1.1
     react-query: ^3.34.0
     react-router-dom: ^6.0.2
@@ -11104,12 +11115,26 @@ __metadata:
   languageName: node
   linkType: hard
 
-"git-url-parse@npm:^11.5.0":
+"git-url-parse@npm:^11.5.0, git-url-parse@npm:^11.6.0":
   version: 11.6.0
   resolution: "git-url-parse@npm:11.6.0"
   dependencies:
     git-up: ^4.0.0
   checksum: 18a7d0bbac76c55fe8a501d4bd4c6b5f5528883a4dadcfce1152b4902e3e5831df8e97f36ea3f564de633e9ab44d9ab09bb2f319e41af1b6e4f627af139d35d5
+  languageName: node
+  linkType: hard
+
+"github-buttons@npm:^2.8.0":
+  version: 2.20.2
+  resolution: "github-buttons@npm:2.20.2"
+  checksum: e3929c8e5cc6eadf3f5b4c72e6ed3c38d66014149f03a50d41c524acc93fc1a6bb265c9a3cd8c7b0d1fb66e9ebb9650482db4b26bb3e23748aada5ba3c204652
+  languageName: node
+  linkType: hard
+
+"github-markdown-css@npm:^5.1.0":
+  version: 5.1.0
+  resolution: "github-markdown-css@npm:5.1.0"
+  checksum: e3472770dedc9508d30a788bc522beb0c993f08b1f098389619174414c3ce558727d8b3d0c6eed50d156ee0cf04ab667e4bca5149dedc7869b54bd38db0cc5fb
   languageName: node
   linkType: hard
 
@@ -18166,6 +18191,15 @@ __metadata:
   version: 3.2.0
   resolution: "react-fast-compare@npm:3.2.0"
   checksum: 8ef272c825ae329f61633ce4ce7f15aa5b84e5214d88bc0823880236e03e985a13195befa2c7a4eda7db3b017dc7985729152d88445823f652403cf36c2b86aa
+  languageName: node
+  linkType: hard
+
+"react-github-btn@npm:^1.2.1":
+  version: 1.2.1
+  resolution: "react-github-btn@npm:1.2.1"
+  dependencies:
+    github-buttons: ^2.8.0
+  checksum: 12c1b3631deef214ced7386b35fd73bbeb2d78742f409356955f475f22256b3af80b99ffa5bb185b66c63b4c34d75ad7a4cf1e947ef5ad3207f29f2fc28d58fc
   languageName: node
   linkType: hard
 

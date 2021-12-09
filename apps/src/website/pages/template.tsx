@@ -1,10 +1,13 @@
 import { fixHMR } from 'fix-hmr';
+import 'github-markdown-css/github-markdown-light.css';
 import React, { useMemo } from 'react';
 import Markdown from 'react-markdown';
 import { useParams } from 'react-router-dom';
 import useCopyClipboard from 'react-use-clipboard';
 import remarkGfm from 'remark-gfm';
 import styled from 'styled-components';
+import { GithubStarButton } from 'website/components/GithubStarButton';
+import { TemplateImages } from 'website/components/TemplateImages';
 import { useReadMe } from 'website/services/useReadMe';
 import { useTemplateData } from '../services/useTemplateData';
 
@@ -36,31 +39,59 @@ function Component({ className }: TemplateProps) {
 
   return (
     <div className={className}>
-      <h1>{template.title}</h1>
+      <section>
+        <h1>
+          {template.title} <GithubStarButton github={template.github} />
+        </h1>
 
-      <p>
-        <code>npx terra-templates get {template.id}</code>
-        {isCopied ? 'Copied' : <button onClick={copy}>Copy</button>}
-      </p>
+        <ul>
+          <li>
+            Github:{' '}
+            <a href={template.github} target="_blank" rel="noreferrer">
+              {template.github}
+            </a>
+          </li>
+          <li>
+            Tags:{' '}
+            <div style={{ display: 'inline-flex', gap: 10 }}>
+              {template.tags?.map((tag) => (
+                <span key={'tag' + tag}>{tag}</span>
+              ))}
+            </div>
+          </li>
+        </ul>
 
-      <p>
-        <a href={template.github} target="_blank" rel="noreferrer">
-          {template.github}
-        </a>
-      </p>
+        <div className="get-command">
+          <code>npx terra-templates get {template.id}</code>{' '}
+          {isCopied ? 'Copied' : <button onClick={copy}>Copy</button>}
+        </div>
+
+        <TemplateImages images={template.images} style={{ maxWidth: 600 }} />
+      </section>
 
       {readme && (
-        <>
-          <hr />
+        <article className="markdown-body">
           <Markdown children={readme} remarkPlugins={[remarkGfm]} />
-        </>
+        </article>
       )}
     </div>
   );
 }
 
 const StyledComponent = styled(Component)`
-  // TODO
+  section {
+    padding: 20px;
+    background-color: skyblue;
+
+    .get-command {
+      background-color: rgba(0, 0, 0, 0.2);
+      padding: 30px;
+    }
+  }
+
+  article {
+    padding: 20px;
+  }
 `;
 
 export const Template = fixHMR(StyledComponent);

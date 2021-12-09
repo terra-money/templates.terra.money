@@ -2,6 +2,7 @@ import { fixHMR } from 'fix-hmr';
 import React, { useMemo } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import styled from 'styled-components';
+import { GithubStarButton } from 'website/components/GithubStarButton';
 import { useTemplateData } from '../services/useTemplateData';
 
 export interface SeriesProps {
@@ -27,9 +28,10 @@ function Component({ className }: SeriesProps) {
       <ul>
         {data.templates
           .filter(({ id }) => series.templates.includes(id))
-          .map(({ id, title }) => (
+          .map(({ id, title, github }) => (
             <li key={'template-' + id}>
-              <Link to={`/template/${id}`}>{title}</Link>
+              <Link to={`/template/${id}`}>{title}</Link>{' '}
+              <GithubStarButton github={github} />
             </li>
           ))}
       </ul>

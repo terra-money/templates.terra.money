@@ -13,14 +13,6 @@ function Component({ className }: HeaderProps) {
       <h1>
         <Link to="/">Terra templates</Link>
       </h1>
-      <ul>
-        <li>
-          <Link to="/">Home</Link>
-        </li>
-        <li>
-          <Link to="/cli">CLI</Link>
-        </li>
-      </ul>
     </header>
   );
 }
@@ -34,14 +26,6 @@ const StyledComponent = styled(Component)`
   align-items: center;
 
   background-color: lightgray;
-
-  ul {
-    list-style: none;
-    padding: 0;
-
-    display: flex;
-    gap: 10px;
-  }
 `;
 
 export const Header = fixHMR(StyledComponent);

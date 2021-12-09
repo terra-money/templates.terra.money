@@ -1,6 +1,4 @@
-import * as fs from 'fs';
 import 'isomorphic-fetch';
-import path from 'path';
 import yargs, { Arguments } from 'yargs';
 import { get } from './commands/get';
 import { home } from './commands/home';
@@ -23,37 +21,16 @@ export function run() {
             'Get template by github-url',
           ),
       handler: ({ _: [, source, targetDirectory] }: Arguments) => {
-        let directory = targetDirectory?.toString();
-
         if (!source) {
           console.log(
             'Please enter the template-id. for example ( terra-templates get smart-contract:basic myapp )',
           );
           return;
-        } else if (!directory) {
-          directory = source.toString().replace(/:/g, '-');
-        }
-
-        if (fs.existsSync(path.resolve(process.cwd(), directory))) {
-          let count = 1;
-
-          while (true) {
-            const alternativeDirectory = directory + '-' + count;
-
-            if (
-              fs.existsSync(path.resolve(process.cwd(), alternativeDirectory))
-            ) {
-              count += 1;
-            } else {
-              directory = alternativeDirectory;
-              break;
-            }
-          }
         }
 
         get({
           source: source.toString(),
-          targetDirectory: directory,
+          targetDirectory: targetDirectory?.toString(),
         });
       },
     })

@@ -1,12 +1,32 @@
 import { copyGithubDirectory } from 'copy-github-directory';
+import { prompt } from 'prompts';
 import { getTemplateData } from '../services/getTemplateData';
 
 interface Option {
   source: string;
-  targetDirectory: string;
+  targetDirectory?: string;
+}
+
+async function getDirectory(source: string): Promise<string> {
+  const { value: directory } = await prompt({
+    type: 'text',
+    name: 'value',
+    initial: source.replace(/:/g, '-'),
+    message: `Enter your project directory. for example ( myapp or dir/myapp )`,
+  });
+
+  if (!directory) {
+    throw new Error(
+      `Enter your project directory. for example ( myapp or dir/myapp )`,
+    );
+  }
+
+  return directory;
 }
 
 export async function get({ source, targetDirectory }: Option) {
+  const directory = targetDirectory ?? (await getDirectory(source));
+
   let url: string;
 
   if (/^http/.test(source)) {
@@ -25,10 +45,10 @@ export async function get({ source, targetDirectory }: Option) {
   try {
     await copyGithubDirectory({
       url,
-      targetDirectory,
+      targetDirectory: directory,
     });
 
-    console.log(`🎉 "${targetDirectory}" is created!`);
+    console.log(`🎉 "${directory}" is created!`);
   } catch (error) {
     console.error(error);
   }

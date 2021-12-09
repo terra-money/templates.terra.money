@@ -11,14 +11,14 @@ export default defineConfig({
   //      'styled-components/dist/styled-components.browser.esm.js',
   //  },
   //},
-  //server: {
-  //  https: {
-  //    cert: process.env.LOCALHOST_HTTPS_CERT,
-  //    key: process.env.LOCALHOST_HTTPS_KEY,
-  //    //@ts-ignore https://github.com/vitejs/vite/pull/3895
-  //    maxSessionMemory: 100,
-  //  },
-  //},
+  server: {
+    https: {
+      cert: process.env.LOCALHOST_HTTPS_CERT,
+      key: process.env.LOCALHOST_HTTPS_KEY,
+      //@ts-ignore https://github.com/vitejs/vite/pull/3895
+      maxSessionMemory: 100,
+    },
+  },
   plugins: [reactRefresh(), tsconfigPaths(), svgr()],
   //build: {
   //  rollupOptions: {

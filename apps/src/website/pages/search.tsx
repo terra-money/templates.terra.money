@@ -4,6 +4,7 @@ import React, { useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { searchTemplateData, TemplatesJson } from 'terra-templates';
+import { GithubStarButton } from 'website/components/GithubStarButton';
 import { useTemplateData } from '../services/useTemplateData';
 
 export interface SearchProps {
@@ -42,7 +43,8 @@ function Component({ className }: SearchProps) {
         {templates.map(({ id, title, github, categories }) => (
           <li key={id}>
             <h3>
-              <Link to={`/template/${id}`}>{title}</Link>
+              <Link to={`/template/${id}`}>{title}</Link>{' '}
+              <GithubStarButton github={github} />
             </h3>
           </li>
         ))}
