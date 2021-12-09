@@ -51,10 +51,10 @@ function Component({ className }: SearchProps) {
       <h2>Series</h2>
 
       <ul>
-        {serise.map(({ title }) => (
-          <li key={'series:' + title}>
+        {serise.map(({ id, title }) => (
+          <li key={'series:' + id}>
             <h3>
-              <Link to={`/series/${title}`}>{title}</Link>
+              <Link to={`/series/${id}`}>{title}</Link>
             </h3>
           </li>
         ))}

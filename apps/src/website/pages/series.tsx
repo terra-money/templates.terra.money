@@ -11,11 +11,11 @@ export interface SeriesProps {
 function Component({ className }: SeriesProps) {
   const { data } = useTemplateData();
 
-  const { seriesTitle } = useParams<'seriesTitle'>();
+  const { seriesId } = useParams<'seriesId'>();
 
   const series = useMemo(() => {
-    return data?.serise.find(({ title }) => seriesTitle === title);
-  }, [data?.serise, seriesTitle]);
+    return data?.serise.find(({ id }) => seriesId === id);
+  }, [data?.serise, seriesId]);
 
   if (!data || !series) {
     return <div className={className}>In progress...</div>;

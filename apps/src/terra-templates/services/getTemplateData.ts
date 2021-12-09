@@ -9,6 +9,7 @@ export interface TemplatesJson {
     forks?: string[];
   }>;
   serise: Array<{
+    id: string;
     title: string;
     templates: string[];
   }>;

@@ -26,7 +26,7 @@ function App() {
           <Route path="/" element={<Search />} />
           <Route path="/cli" element={<Cli />} />
           <Route path="/template/:templateId" element={<Template />} />
-          <Route path="/series/:seriesTitle" element={<Series />} />
+          <Route path="/series/:seriesId" element={<Series />} />
           <Route path="/*" element={<Navigate replace to="/" />} />
         </Routes>
       </Main>
