@@ -148,6 +148,7 @@ const StyledComponent = styled(Component)`
         border: none;
 
         background-color: #ffffff;
+        color: #212121;
 
         width: 34px;
         align-self: stretch;
