@@ -1,67 +1,13 @@
-# WORKSPACE TEMPLATE
+# [templates.terra.money](https://templates.terra.money)
 
-## Start web project
+This repository contains <https://templates.terra.money> and [terra-templates](https://www.npmjs.com/package/terra-templates) CLI tools.
 
-```sh
-# create a workspace directory
-npx copy-github-directory workspace my-project
-cd my-project
+If you want to register your new template, please go to [templates](https://github.com/terra-money/templates) repository. (This is not a repository to register a new template)
 
-# create an app
-npx copy-github-directory web my-app
+# Start development
 
-# add "my-app" to workspaces of package.json
-
-# install
-yarn
-
-# start
-cd my-app
-
-# start
-yarn run start
-```
-
-## Start electron project
-
-```sh
-# create a workspace directory
-npx copy-github-directory workspace my-project
-cd my-project
-
-# create an app
-npx copy-github-directory electron my-app
-
-# add "my-app" to workspaces of package.json
-
-# install
-yarn
-
-# directory
-cd my-app
-
-# start
-yarn run start
-```
-
-## Start multi-packages project
-
-```sh
-# create a workspace directory
-npx copy-github-directory workspace my-project
-cd my-project
-
-# create an app
-npx copy-github-directory packages my-packages
-
-# add "my-packages" to workspaces of package.json
-
-# install
-yarn
-
-# start
-cd my-packages
-
-# start
-yarn run test
-```
+    git clone https://github.com/terra-money/templates.terra.money.git
+    cd templates.terra.money
+    yarn install
+    cd apps
+    yarn run start

@@ -2,8 +2,8 @@
   "private": true,
   "version": "2021.12.07",
   "author": "Ian Lee <ian@terra.money>",
-  "license": "MIT",
-  "repository": "https://github.com/githubid/repository",
+  "license": "Apache-2.0",
+  "repository": "https://github.com/terra-money/templates.terra.money",
   "scripts": {
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx}\"",
     "lint": "eslint \"**/*.{js,jsx,ts,tsx}\"",
