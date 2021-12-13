@@ -1,12 +1,12 @@
 import { fixHMR } from 'fix-hmr';
 import 'github-markdown-css/github-markdown-light.css';
 import React, { useMemo } from 'react';
+import { BsTerminalFill, MdCheck, MdOpenInNew } from 'react-icons/all';
 import Markdown from 'react-markdown';
 import { useParams } from 'react-router-dom';
 import useCopyClipboard from 'react-use-clipboard';
 import remarkGfm from 'remark-gfm';
 import styled from 'styled-components';
-import { GithubStarButton } from 'website/components/GithubStarButton';
 import { TemplateImages } from 'website/components/TemplateImages';
 import { useReadMe } from 'website/services/useReadMe';
 import { useTemplateData } from '../services/useTemplateData';
@@ -39,58 +39,177 @@ function Component({ className }: TemplateProps) {
 
   return (
     <div className={className}>
-      <section>
+      <header>
         <h1>
-          {template.title} <GithubStarButton github={template.github} />
+          {template.title}{' '}
+          <a href={template.github} target="_blank" rel="noreferrer">
+            <MdOpenInNew />
+          </a>
         </h1>
 
-        <ul>
-          <li>
-            Github:{' '}
-            <a href={template.github} target="_blank" rel="noreferrer">
-              {template.github}
-            </a>
-          </li>
-          <li>
-            Tags:{' '}
-            <div style={{ display: 'inline-flex', gap: 10 }}>
-              {template.tags?.map((tag) => (
-                <span key={'tag' + tag}>{tag}</span>
-              ))}
-            </div>
-          </li>
-        </ul>
-
         <div className="get-command">
-          <code>npx terra-templates get {template.id}</code>{' '}
-          {isCopied ? 'Copied' : <button onClick={copy}>Copy</button>}
+          <code>npx terra-templates get {template.id}</code>
+          {isCopied ? (
+            <button>
+              <MdCheck />
+            </button>
+          ) : (
+            <button onClick={copy}>
+              <BsTerminalFill
+                style={{ transform: 'scale(1.2) translateY(0.1em)' }}
+              />
+            </button>
+          )}
         </div>
+      </header>
 
-        <TemplateImages images={template.images} style={{ maxWidth: 600 }} />
-      </section>
-
-      {readme && (
+      <main>
         <article className="markdown-body">
-          <Markdown children={readme} remarkPlugins={[remarkGfm]} />
+          {readme && <Markdown children={readme} remarkPlugins={[remarkGfm]} />}
         </article>
-      )}
+
+        <aside>
+          <TemplateImages
+            images={template.images}
+            style={{ maxWidth: '100%' }}
+          />
+
+          <h3>Categories</h3>
+
+          <ul>
+            {template.categories.map((category) => (
+              <li key={'category:' + category}>
+                <button>{category}</button>
+              </li>
+            ))}
+          </ul>
+
+          {template.tags && (
+            <>
+              <h3>Tags</h3>
+
+              <ul>
+                {template.tags.map((tag) => (
+                  <li key={'tag:' + tag}>
+                    <button>{tag}</button>
+                  </li>
+                ))}
+              </ul>
+            </>
+          )}
+        </aside>
+      </main>
     </div>
   );
 }
 
 const StyledComponent = styled(Component)`
-  section {
-    padding: 20px;
-    background-color: skyblue;
+  min-height: 100vh;
+
+  background-color: #ffffff;
+
+  header {
+    padding: var(--layout-padding);
+
+    background-color: #f8f9fe;
+    color: #2043b5;
+    border-bottom: 1px solid #e7ebf6;
+
+    h1 {
+      font-size: 24px;
+      font-weight: 500;
+
+      margin-bottom: 16px;
+
+      a {
+        font-size: 16px;
+        vertical-align: center;
+      }
+    }
 
     .get-command {
-      background-color: rgba(0, 0, 0, 0.2);
-      padding: 30px;
+      display: inline-flex;
+      align-items: center;
+
+      border-radius: 15px;
+
+      code {
+        font-size: 14px;
+        padding: 10px 15px;
+
+        background-color: #212121;
+        color: #ffffff;
+      }
+
+      button {
+        cursor: pointer;
+
+        outline: none;
+        border: none;
+
+        background-color: #ffffff;
+
+        width: 34px;
+        align-self: stretch;
+
+        svg {
+          width: 1em;
+        }
+      }
     }
   }
 
-  article {
-    padding: 20px;
+  main {
+    display: flex;
+    gap: 2em;
+
+    padding: var(--layout-padding);
+    padding-top: 3em;
+
+    article {
+      flex: 1;
+      min-width: 0;
+    }
+
+    aside {
+      width: 400px;
+
+      h3 {
+        margin-top: 1.2em;
+        margin-bottom: 0.6em;
+
+        font-size: 14px;
+        font-weight: 500;
+      }
+
+      ul {
+        list-style: none;
+        padding: 0;
+
+        display: flex;
+        gap: 5px;
+
+        button {
+          outline: none;
+          background-color: transparent;
+          border: 1px solid #e7ebf6;
+
+          font-size: 12px;
+          padding: 7px 10px;
+          border-radius: 4px;
+        }
+      }
+    }
+  }
+
+  @media (max-width: 1100px) {
+    main {
+      flex-direction: column-reverse;
+
+      aside {
+        width: auto;
+      }
+    }
   }
 `;
 

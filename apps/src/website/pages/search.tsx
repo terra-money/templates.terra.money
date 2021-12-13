@@ -1,6 +1,7 @@
 import { useQueryBoundInput } from '@libs/use-query-bound-input';
 import { fixHMR } from 'fix-hmr';
 import React, { useMemo } from 'react';
+import { MdOutlineSearch } from 'react-icons/all';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { searchTemplateData, TemplatesJson } from 'terra-templates';
@@ -31,21 +32,24 @@ function Component({ className }: SearchProps) {
 
   return (
     <div className={className}>
-      <input
-        type="text"
-        value={value ?? ''}
-        onChange={({ target }) => updateValue(target.value)}
-      />
+      <div className="search">
+        <MdOutlineSearch />
+        <input
+          type="text"
+          value={value ?? ''}
+          onChange={({ target }) => updateValue(target.value)}
+        />
+      </div>
 
-      <h2 style={{ marginTop: 20 }}>Templates</h2>
+      <h2>Templates</h2>
 
       <ul className="templates">
         {templates.map((template) => (
-          <TemplateCard template={template} />
+          <TemplateCard key={'template:' + template.id} template={template} />
         ))}
       </ul>
 
-      <h2 style={{ marginTop: 20 }}>Series</h2>
+      <h2>Series</h2>
 
       <ul>
         {serise.map(({ id, title }) => (
@@ -61,7 +65,40 @@ function Component({ className }: SearchProps) {
 }
 
 const StyledComponent = styled(Component)`
-  padding: 20px;
+  padding: var(--layout-padding);
+
+  .search {
+    display: flex;
+    align-items: center;
+
+    background-color: #ffffff;
+    border: 1px solid #e7ebf6;
+
+    height: 45px;
+    padding: 0 14px;
+    border-radius: 5px;
+
+    svg {
+      font-size: 24px;
+    }
+
+    input {
+      border: 0;
+      outline: none;
+
+      font-size: 18px;
+      font-weight: 500;
+    }
+  }
+
+  h2 {
+    font-size: 20px;
+    font-weight: 500;
+
+    color: #2043b5;
+
+    margin: 40px 0 20px 0;
+  }
 
   input {
     width: 100%;
@@ -74,9 +111,41 @@ const StyledComponent = styled(Component)`
     padding: 0;
 
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(6, 1fr);
     grid-column-gap: 10px;
     grid-row-gap: 10px;
+  }
+
+  @media (max-width: 1600px) {
+    .templates {
+      grid-template-columns: repeat(5, 1fr);
+    }
+  }
+
+  @media (max-width: 1300px) {
+    .templates {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+
+  @media (max-width: 1000px) {
+    .templates {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  @media (max-width: 750px) {
+    .templates {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 600px) {
+    .templates {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
   }
 `;
 

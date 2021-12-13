@@ -11,21 +11,36 @@ function Component({ className }: HeaderProps) {
   return (
     <header className={className}>
       <h1>
-        <Link to="/">Terra templates</Link>
+        <Link to="/">
+          Terra <span>templates</span>
+        </Link>
       </h1>
     </header>
   );
 }
 
 const StyledComponent = styled(Component)`
-  height: 60px;
-  padding: 0 20px;
+  height: 30px;
+  padding: 0 var(--layout-padding);
 
   display: flex;
   justify-content: space-between;
   align-items: center;
 
-  background-color: lightgray;
+  background-color: #19358e;
+
+  h1 {
+    font-size: 14px;
+
+    a {
+      color: #ffffff;
+      text-decoration: none;
+
+      span {
+        font-weight: normal;
+      }
+    }
+  }
 `;
 
 export const Header = fixHMR(StyledComponent);

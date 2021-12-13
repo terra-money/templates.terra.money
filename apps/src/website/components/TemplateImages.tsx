@@ -6,6 +6,7 @@ import React, {
   useMemo,
   useState,
 } from 'react';
+import { MdChevronLeft, MdChevronRight } from 'react-icons/all';
 import styled from 'styled-components';
 import { getImageUrl } from 'terra-templates';
 
@@ -38,8 +39,12 @@ function Component({ images, style, ...divProps }: TemplateImagesProps) {
     >
       {images.length > 1 && (
         <>
-          <button onClick={prev}>Prev</button>
-          <button onClick={next}>Next</button>
+          <button onClick={prev}>
+            <MdChevronLeft />
+          </button>
+          <button onClick={next}>
+            <MdChevronRight />
+          </button>
         </>
       )}
     </div>
@@ -55,6 +60,20 @@ const StyledComponent = styled(Component)`
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  button {
+    background-color: transparent;
+    border: none;
+
+    cursor: pointer;
+
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 20px;
+
+    &:hover {
+      color: #ffffff;
+    }
+  }
 `;
 
 export const TemplateImages = fixHMR(StyledComponent);

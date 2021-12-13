@@ -16,7 +16,7 @@ export default defineConfig({
       cert: process.env.LOCALHOST_HTTPS_CERT,
       key: process.env.LOCALHOST_HTTPS_KEY,
       //@ts-ignore https://github.com/vitejs/vite/pull/3895
-      maxSessionMemory: 100,
+      maxSessionMemory: 150,
     },
   },
   plugins: [reactRefresh(), tsconfigPaths(), svgr()],
