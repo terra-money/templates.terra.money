@@ -1,5 +1,7 @@
 # CLI tools for <https://templates.terra.money>
 
+Start easily developing Terra Smart Contract and Terra dApp.
+
 ## Install
 
 ```sh
@@ -8,13 +10,7 @@ npm install -g terra-templates
 
 ## Commands
 
-```sh
-# Create a project with specific template-id 
-terra-templates get smart-contract:basic myapp
-
-# Search templates
-terra-templates search "contract"
-
-# Open https://templates.terra.money
-terra-templates home
-```
+- `terra-templates get <template-id> [target-directory]` download a template
+    - You can find the `template-id` in <https://templates.terra.money>
+- `terra-templates search <keyword>` search templates
+- `terra-templates home` open <https://templates.terra.money>
