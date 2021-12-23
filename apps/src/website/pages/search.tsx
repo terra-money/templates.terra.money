@@ -1,9 +1,9 @@
 import { useQueryBoundInput } from '@libs/use-query-bound-input';
 import { fixHMR } from 'fix-hmr';
 import React, { useMemo } from 'react';
-import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { searchTemplateData, TemplatesJson } from 'terra-templates';
+import { SeriesCard } from '../components/SeriesCard';
 import { TemplateCard } from '../components/TemplateCard';
 import { useTemplateData } from '../services/useTemplateData';
 
@@ -33,7 +33,7 @@ function Component({ className }: SearchProps) {
     <div className={className}>
       <h1>Templates</h1>
 
-      <ul className="templates">
+      <ul className="templates" style={{ marginBottom: 60 }}>
         {templates.map((template) => (
           <TemplateCard key={'template:' + template.id} template={template} />
         ))}
@@ -41,13 +41,13 @@ function Component({ className }: SearchProps) {
 
       <h1>Series</h1>
 
-      <ul>
-        {serise.map(({ id, title }) => (
-          <li key={'series:' + id}>
-            <h3>
-              <Link to={`/series/${id}`}>{title}</Link>
-            </h3>
-          </li>
+      <ul className="series">
+        {serise.map((item) => (
+          <SeriesCard
+            key={'series:' + item.id}
+            series={item}
+            templates={templates}
+          />
         ))}
       </ul>
     </div>
@@ -65,7 +65,8 @@ const StyledComponent = styled(Component)`
     margin: 36px 0 42px 0;
   }
 
-  .templates {
+  .templates,
+  .series {
     list-style: none;
     padding: 0;
 
@@ -76,13 +77,15 @@ const StyledComponent = styled(Component)`
   }
 
   @media (max-width: 1180px) {
-    .templates {
+    .templates,
+    .series {
       grid-template-columns: repeat(3, 1fr);
     }
   }
 
   @media (max-width: 930px) {
-    .templates {
+    .templates,
+    .series {
       grid-template-columns: repeat(2, 1fr);
     }
   }
@@ -94,7 +97,8 @@ const StyledComponent = styled(Component)`
       margin: 28px 20px 16px 20px;
     }
 
-    .templates {
+    .templates,
+    .series {
       display: flex;
       flex-direction: column;
       gap: 20px;

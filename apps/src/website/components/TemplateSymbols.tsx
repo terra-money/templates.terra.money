@@ -8,14 +8,16 @@ export interface TemplateSymbolsProps
     HTMLUListElement
   > {
   symbols: string[];
+  size?: number;
+  gap?: number;
 }
 
 const ROOT_URL = 'https://terra-money.github.io/templates';
 
-function Component({ symbols, ...divProps }: TemplateSymbolsProps) {
+function Component({ symbols, size, gap, ...divProps }: TemplateSymbolsProps) {
   return (
     <ul {...divProps}>
-      {symbols.map((symbol) => (
+      {symbols.slice(0, 5).map((symbol) => (
         <li key={symbol}>
           <img src={`${ROOT_URL}/symbols/${symbol}`} alt={symbol} />
         </li>
@@ -30,7 +32,12 @@ const StyledComponent = styled(Component)`
 
   display: flex;
 
-  gap: 8px;
+  gap: ${({ gap = 8 }) => gap}px;
+
+  li img {
+    width: ${({ size = 50 }) => size}px;
+    height: ${({ size = 50 }) => size}px;
+  }
 `;
 
 export const TemplateSymbols = fixHMR(StyledComponent);
