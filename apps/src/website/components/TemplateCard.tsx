@@ -1,96 +1,74 @@
 import { fixHMR } from 'fix-hmr';
-import React from 'react';
+import React, { DetailedHTMLProps, LiHTMLAttributes } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { TemplatesJson } from 'terra-templates';
-import { TemplateImages } from 'website/components/TemplateImages';
+import { TemplateSymbols } from './TemplateSymbols';
+import { TemplateTags } from './TemplateTags';
 
-export interface TemplateCardProps {
-  className?: string;
+export interface TemplateCardProps
+  extends DetailedHTMLProps<LiHTMLAttributes<HTMLLIElement>, HTMLLIElement> {
   template: TemplatesJson['templates'][number];
 }
 
-function Component({ className, template }: TemplateCardProps) {
+function Component({ template, ...liProps }: TemplateCardProps) {
   return (
-    <li className={className}>
-      <TemplateImages
-        className="template-card-images"
-        images={template.images}
-      />
-
-      <footer>
-        <h3>
-          <Link to={`/template/${template.id}`}>{template.title}</Link>
-        </h3>
-
-        {template.tags && (
-          <ul>
-            {template.tags.map((tag) => (
-              <li key={'tag:' + tag}>
-                <button>{tag}</button>
-              </li>
-            ))}
-          </ul>
-        )}
-      </footer>
+    <li {...liProps}>
+      <Link to={`/template/${template.id}`}>
+        <h3>{template.title}</h3>
+        {template.tags && <TemplateTags tags={template.tags} />}
+        <div className="spacer"> </div>
+        <TemplateSymbols className="symbols" symbols={template.symbols} />
+      </Link>
     </li>
   );
 }
 
 const StyledComponent = styled(Component)`
-  min-width: 0;
+  a {
+    min-width: 0;
+    min-height: 261px;
 
-  --radius: 5px;
+    padding: 28px;
 
-  background-color: #ffffff;
-  border: 1px solid #e7ebf6;
-  border-radius: var(--radius);
+    background-color: #ffffff;
+    border: 1px solid var(--color-card-border);
+    border-radius: 8px;
 
-  .template-card-images {
-    border-top-left-radius: var(--radius);
-    border-top-right-radius: var(--radius);
+    color: var(--color-text);
+
+    text-decoration: none;
+
+    display: flex;
+    flex-direction: column;
   }
 
-  footer {
-    height: 80px;
+  h3 {
+    font-size: var(--h3);
+    font-weight: 500;
+    line-height: 1.5;
 
-    h3 {
-      max-width: 100%;
+    margin-bottom: 12px;
+  }
 
-      font-size: 13px;
+  .spacer {
+    flex: 1;
+  }
 
-      a {
-        display: block;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
+  .symbols {
+    align-self: flex-end;
+  }
 
-        text-decoration: none;
-        font-weight: 500;
-      }
+  @media (max-width: 600px) {
+    a {
+      border-left: 0;
+      border-right: 0;
+      border-radius: 0;
 
-      margin-bottom: 12px;
+      min-height: 180px;
+
+      padding: 20px;
     }
-
-    ul {
-      list-style: none;
-      padding: 0;
-
-      display: flex;
-      gap: 5px;
-
-      button {
-        outline: none;
-        background-color: transparent;
-        border: 1px solid #e7ebf6;
-
-        font-size: 12px;
-        padding: 7px 10px;
-        border-radius: 4px;
-      }
-    }
-
-    padding: 15px;
   }
 `;
 

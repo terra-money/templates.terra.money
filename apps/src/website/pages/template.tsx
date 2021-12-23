@@ -1,13 +1,14 @@
 import { fixHMR } from 'fix-hmr';
 import 'github-markdown-css/github-markdown-light.css';
 import React, { useMemo } from 'react';
-import { BsTerminalFill, MdCheck, MdOpenInNew } from 'react-icons/all';
+import { BsGithub, MdCheck, MdOutlineFilterNone } from 'react-icons/all';
 import Markdown from 'react-markdown';
 import { useParams } from 'react-router-dom';
 import useCopyClipboard from 'react-use-clipboard';
 import remarkGfm from 'remark-gfm';
 import styled from 'styled-components';
-import { TemplateImages } from 'website/components/TemplateImages';
+import { TemplateSymbols } from 'website/components/TemplateSymbols';
+import { TemplateTags } from 'website/components/TemplateTags';
 import { useReadMe } from 'website/services/useReadMe';
 import { useTemplateData } from '../services/useTemplateData';
 
@@ -43,7 +44,7 @@ function Component({ className }: TemplateProps) {
         <h1>
           {template.title}{' '}
           <a href={template.github} target="_blank" rel="noreferrer">
-            <MdOpenInNew />
+            <BsGithub />
           </a>
         </h1>
 
@@ -51,13 +52,11 @@ function Component({ className }: TemplateProps) {
           <code>npx terra-templates get {template.id}</code>
           {isCopied ? (
             <button>
-              <MdCheck />
+              <MdCheck /> COPY
             </button>
           ) : (
             <button onClick={copy}>
-              <BsTerminalFill
-                style={{ transform: 'scale(1.2) translateY(0.1em)' }}
-              />
+              <MdOutlineFilterNone /> COPY
             </button>
           )}
         </div>
@@ -69,34 +68,23 @@ function Component({ className }: TemplateProps) {
         </article>
 
         <aside>
-          <TemplateImages
-            images={template.images}
-            style={{ maxWidth: '100%' }}
-          />
+          <div className="symbols">
+            <TemplateSymbols symbols={template.symbols} />
+          </div>
 
-          <h3>Categories</h3>
+          <div className="tags">
+            <h3>Categories</h3>
 
-          <ul>
-            {template.categories.map((category) => (
-              <li key={'category:' + category}>
-                <button>{category}</button>
-              </li>
-            ))}
-          </ul>
+            <TemplateTags tags={template.categories} />
 
-          {template.tags && (
-            <>
-              <h3>Tags</h3>
+            {template.tags && (
+              <>
+                <h3>Tags</h3>
 
-              <ul>
-                {template.tags.map((tag) => (
-                  <li key={'tag:' + tag}>
-                    <button>{tag}</button>
-                  </li>
-                ))}
-              </ul>
-            </>
-          )}
+                <TemplateTags tags={template.tags} />
+              </>
+            )}
+          </div>
         </aside>
       </main>
     </div>
@@ -104,101 +92,108 @@ function Component({ className }: TemplateProps) {
 }
 
 const StyledComponent = styled(Component)`
-  min-height: 100vh;
-
-  background-color: #ffffff;
-
   header {
-    padding: var(--layout-padding);
+    margin-top: 36px;
 
-    background-color: #f8f9fe;
-    color: #2043b5;
-    border-bottom: 1px solid #e7ebf6;
+    color: var(--color-text);
 
     h1 {
-      font-size: 24px;
+      font-size: 36px;
       font-weight: 500;
 
-      margin-bottom: 16px;
-
       a {
-        font-size: 16px;
+        font-size: 0.55em;
         vertical-align: center;
+        margin-left: 0.2em;
       }
+
+      margin-bottom: 18px;
     }
 
     .get-command {
       display: inline-flex;
       align-items: center;
 
-      border-radius: 15px;
+      border: 1px solid var(--color-line);
+      border-radius: 8px;
+
+      padding: 8px 12px;
+
+      gap: 16px;
 
       code {
-        font-size: 14px;
-        padding: 10px 15px;
-
-        background-color: #212121;
-        color: #ffffff;
+        font-size: 12px;
+        line-height: 18px;
+        color: var(--color-text);
       }
 
       button {
         cursor: pointer;
 
         outline: none;
-        border: none;
+        background-color: transparent;
+        border: 1px solid var(--color-text);
+        border-radius: 10px;
 
-        background-color: #ffffff;
-        color: #212121;
+        color: var(--color-text);
 
-        width: 34px;
-        align-self: stretch;
+        font-size: 10px;
+        font-weight: 500;
+
+        height: 20px;
+        padding: 0 10px;
+
+        word-break: keep-all;
+        white-space: nowrap;
 
         svg {
           width: 1em;
+          transform: translateY(0.1em);
         }
       }
     }
+
+    margin-bottom: 24px;
   }
 
   main {
     display: flex;
-    gap: 2em;
-
-    padding: var(--layout-padding);
-    padding-top: 3em;
+    gap: 20px;
 
     article {
-      flex: 1;
+      width: 100%;
       min-width: 0;
+
+      padding: 40px;
+
+      font-size: 14px;
+
+      border: 1px solid var(--color-card-border);
+      border-radius: 8px;
     }
 
     aside {
-      width: 400px;
+      width: 100%;
+      max-width: 310px;
 
-      h3 {
-        margin-top: 1.2em;
-        margin-bottom: 0.6em;
+      color: var(--color-text);
 
-        font-size: 14px;
-        font-weight: 500;
+      .symbols {
+        height: 175px;
+        border-radius: 8px;
+
+        background-color: var(--color-card-border);
+
+        display: grid;
+        place-content: center;
       }
 
-      ul {
-        list-style: none;
-        padding: 0;
+      h3 {
+        margin-top: 20px;
+        margin-bottom: 10px;
 
-        display: flex;
-        gap: 5px;
-
-        button {
-          outline: none;
-          background-color: transparent;
-          border: 1px solid #e7ebf6;
-
-          font-size: 12px;
-          padding: 7px 10px;
-          border-radius: 4px;
-        }
+        font-size: 16px;
+        font-weight: 500;
       }
     }
   }
@@ -209,6 +204,44 @@ const StyledComponent = styled(Component)`
 
       aside {
         width: auto;
+      }
+    }
+  }
+
+  @media (max-width: 600px) {
+    header {
+      margin-top: 28px;
+      padding: 0 20px;
+
+      h1 {
+        font-size: 24px;
+      }
+
+      .get-command {
+        display: flex;
+        justify-content: space-between;
+      }
+    }
+
+    main {
+      article {
+        border-radius: 0;
+        border-left: 0;
+        border-right: 0;
+
+        padding: 20px;
+      }
+
+      aside {
+        max-width: unset;
+
+        .symbols {
+          border-radius: 0;
+        }
+
+        .tags {
+          padding: 0 20px;
+        }
       }
     }
   }

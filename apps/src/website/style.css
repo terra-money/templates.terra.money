@@ -1,5 +1,18 @@
-html, body {
+html,
+body {
   margin: 0;
-  
-  background-color: #f8f9fe;
+
+  background-color: var(--color-bg);
+}
+
+main, footer {
+  max-width: 1300px;
+  width: 90vw;
+  margin: 0 auto;
+}
+
+@media (max-width: 600px) {
+  main, footer {
+    width: 100vw;
+  }
 }

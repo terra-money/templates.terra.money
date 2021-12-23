@@ -1,11 +1,10 @@
 import { useQueryBoundInput } from '@libs/use-query-bound-input';
 import { fixHMR } from 'fix-hmr';
 import React, { useMemo } from 'react';
-import { MdOutlineSearch } from 'react-icons/all';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { searchTemplateData, TemplatesJson } from 'terra-templates';
-import { TemplateCard } from 'website/components/TemplateCard';
+import { TemplateCard } from '../components/TemplateCard';
 import { useTemplateData } from '../services/useTemplateData';
 
 export interface SearchProps {
@@ -15,7 +14,7 @@ export interface SearchProps {
 function Component({ className }: SearchProps) {
   const { data } = useTemplateData();
 
-  const { value, updateValue } = useQueryBoundInput({ queryParam: 'search' });
+  const { value } = useQueryBoundInput({ queryParam: 'search' });
 
   const { templates, serise } = useMemo<TemplatesJson>(() => {
     if (!data) {
@@ -32,16 +31,7 @@ function Component({ className }: SearchProps) {
 
   return (
     <div className={className}>
-      <div className="search">
-        <MdOutlineSearch />
-        <input
-          type="text"
-          value={value ?? ''}
-          onChange={({ target }) => updateValue(target.value)}
-        />
-      </div>
-
-      <h2>Templates</h2>
+      <h1>Templates</h1>
 
       <ul className="templates">
         {templates.map((template) => (
@@ -49,7 +39,7 @@ function Component({ className }: SearchProps) {
         ))}
       </ul>
 
-      <h2>Series</h2>
+      <h1>Series</h1>
 
       <ul>
         {serise.map(({ id, title }) => (
@@ -65,45 +55,14 @@ function Component({ className }: SearchProps) {
 }
 
 const StyledComponent = styled(Component)`
-  padding: var(--layout-padding);
-
-  .search {
-    display: flex;
-    align-items: center;
-
-    background-color: #ffffff;
-    border: 1px solid #e7ebf6;
-
-    height: 45px;
-    padding: 0 14px;
-    border-radius: 5px;
-
-    svg {
-      font-size: 24px;
-    }
-
-    input {
-      border: 0;
-      outline: none;
-
-      font-size: 18px;
-      font-weight: 500;
-    }
-  }
-
-  h2 {
-    font-size: 20px;
+  h1 {
+    font-size: var(--h1);
     font-weight: 500;
+    line-height: 54px;
 
     color: #2043b5;
 
-    margin: 40px 0 20px 0;
-  }
-
-  input {
-    width: 100%;
-    font-size: 15px;
-    padding: 10px;
+    margin: 36px 0 42px 0;
   }
 
   .templates {
@@ -111,40 +70,34 @@ const StyledComponent = styled(Component)`
     padding: 0;
 
     display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    grid-column-gap: 10px;
-    grid-row-gap: 10px;
+    grid-template-columns: repeat(4, 1fr);
+    grid-column-gap: 20px;
+    grid-row-gap: 20px;
   }
 
-  @media (max-width: 1600px) {
-    .templates {
-      grid-template-columns: repeat(5, 1fr);
-    }
-  }
-
-  @media (max-width: 1300px) {
-    .templates {
-      grid-template-columns: repeat(4, 1fr);
-    }
-  }
-
-  @media (max-width: 1000px) {
+  @media (max-width: 1180px) {
     .templates {
       grid-template-columns: repeat(3, 1fr);
     }
   }
 
-  @media (max-width: 750px) {
+  @media (max-width: 930px) {
     .templates {
       grid-template-columns: repeat(2, 1fr);
     }
   }
 
   @media (max-width: 600px) {
+    h1 {
+      font-size: var(--h2);
+
+      margin: 28px 20px 16px 20px;
+    }
+
     .templates {
       display: flex;
       flex-direction: column;
-      gap: 10px;
+      gap: 20px;
     }
   }
 `;

@@ -1,3 +1,9 @@
 :root {
   --layout-padding: 20px;
+  
+  --h1: 36px;
+  --h2: 24px;
+  --h3: 16px;
+  --p1: 14px;
+  --p2: 12px;
 }

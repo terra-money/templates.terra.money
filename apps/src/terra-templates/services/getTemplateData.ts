@@ -2,6 +2,7 @@ export interface TemplatesJson {
   templates: Array<{
     id: string;
     title: string;
+    symbols: string[];
     images: string[];
     github: string;
     categories: ('smart_contract' | 'web_app')[];

@@ -1,0 +1,10 @@
+.theme-light {
+  --color-menu-bg: #0045a7;
+  --color-bg: #f9faff;
+  --color-text: #2043b5;
+  --color-card-border: #ebeff8;
+  --color-button-primary-bg: #0759e7;
+  --color-button-default-text: #2043b5;
+  --color-line: #cfd8ea;
+  --color-input-border: #cfd8ea;
+}

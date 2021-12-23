@@ -7,6 +7,7 @@ import {
   Route,
   Routes,
 } from 'react-router-dom';
+import { Footer } from './components/Footer';
 import { Header } from './components/Header';
 import { Search } from './pages/search';
 import { Series } from './pages/series';
@@ -27,6 +28,7 @@ function App() {
           <Route path="/*" element={<Navigate replace to="/" />} />
         </Routes>
       </main>
+      <Footer />
     </div>
   );
 }

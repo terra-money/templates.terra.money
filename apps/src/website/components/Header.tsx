@@ -20,24 +20,24 @@ function Component({ className }: HeaderProps) {
 }
 
 const StyledComponent = styled(Component)`
-  height: 30px;
+  height: 68px;
   padding: 0 var(--layout-padding);
 
   display: flex;
   justify-content: space-between;
   align-items: center;
 
-  background-color: #19358e;
+  background-color: var(--color-menu-bg);
 
   h1 {
-    font-size: 14px;
+    font-size: 20px;
 
     a {
       color: #ffffff;
       text-decoration: none;
 
       span {
-        font-weight: normal;
+        font-weight: 400;
       }
     }
   }
