@@ -1,6 +1,7 @@
 {
   "short_name": "Terra Templates",
   "name": "Terra Templates",
+  "description": "Quick start terra web app and smart contract by running one command",
   "icons": [
     {
       "src": "logo.png",
