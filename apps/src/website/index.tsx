@@ -9,6 +9,7 @@ import {
 } from 'react-router-dom';
 import { Footer } from './components/Footer';
 import { Header } from './components/Header';
+import { Introduction } from './components/Introduction';
 import { Search } from './pages/search';
 import { Series } from './pages/series';
 import { Template } from './pages/template';
@@ -20,6 +21,7 @@ function App() {
   return (
     <div>
       <Header />
+      <Introduction />
       <main>
         <Routes>
           <Route path="/" element={<Search />} />

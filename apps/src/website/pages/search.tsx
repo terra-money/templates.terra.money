@@ -14,6 +14,7 @@ export interface SearchProps {
 function Component({ className }: SearchProps) {
   const { data } = useTemplateData();
 
+  // TODO restore search when there are more than 20 templates
   const { value } = useQueryBoundInput({ queryParam: 'search' });
 
   const { templates, serise } = useMemo<TemplatesJson>(() => {
